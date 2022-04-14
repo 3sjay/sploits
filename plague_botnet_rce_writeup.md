@@ -1,6 +1,6 @@
 ## Hacking Botnets 
 
-Why build when you can borrow ;P? On a serious note, I like to have a look at the vulnerabilities of offensive tools. I did look at botnet panels a few years ago and thought that it was time againt to do so.
+Why build when you can borrow ;P? On a serious note, I like to have a look at the vulnerabilities of offensive tools. I did look at botnet panels a few years ago and thought that it was time again to do so.
 
 
 In this post we'll have a look at the Plague Botnet. You can find it with your favorite search engine or you can take my package where you can easily run it with docker-compose.
