@@ -3,7 +3,7 @@
 Why build when you can borrow ;P? On a serious note, I like to have a look at the vulnerabilities of offensive tools. I did look at botnet panels a few years ago and thought that it was time again to do so.
 
 
-In this post we'll have a look at the Plague Botnet. You can find it with your favorite search engine or you can take my package where you can easily run it with docker-compose.
+In this post we'll have a look at the Plague Botnet. You can find it with your favorite search engine.
 While doing static analysis I find it crucial to have a setup where I can test/debug stuff so nowadays I do that first, so take your time to set it up properly if you want to follow along.
 
 
@@ -49,11 +49,11 @@ so, does `htmlspecialchars` protect you from SQL injections?! Spoiler: it doesn'
 
 
 
-Ok, vuln number two, oh man this shit is so full of vulns that at some point I just stopped looking. Anyway, persistent XSS is in my opinion another good way to at least make a botnet takeover (creating new admin user, leaking all the data, deleting all the malware on the clients, (push new stuff *evill grin*)) ... there are so many options and I will demonstrate this a bit further when we look at another panel in a later post)
+Ok, vuln number two, oh man this shit is so full of vulns that at some point I just stopped looking. Anyway, persistent XSS is in my opinion another good way to at least make a botnet takeover (creating new admin user, leaking all the data, deleting all the malware on the clients, (push new stuff \*evil grin\*)) ... there are so many options and I will demonstrate this a bit further when we look at another panel in a later post)
 
 As already mentioned, the operator most often does have a panel to see how many clients are there, what OS do they have what AV and so on and so on. This data is of course taken from the client and if not properly sanitized might lead to all kind of injection scenarios.
 
-The first persistend XSS was in commands.php, the script the client sends it's data back/interacts with the botnet panel.
+The first persistent XSS was in commands.php, the script the client sends it's data back/interacts with the botnet panel.
 
 ```php
 # commands.php : 4
@@ -83,7 +83,7 @@ function LogStr($Str){
 }
 ```
 
-in commands.php QueueCommand() function is called with the fully controllable $GUID. Then the LogStr() function is called which eventually writes the still unsanitized, totally controllable input into the file. ... but they wouldn't also just display the data, would they? *Insert Anakin meme*
+in commands.php QueueCommand() function is called with the fully controllable $GUID. Then the LogStr() function is called which eventually writes the still unsanitized, totally controllable input into the file. ... but they wouldn't also just display the data, would they? \*Insert Anakin meme\*
 
 so you can just use curl or the below python script to trigger a XSS PoC, writing a good payload is left as an exercise to the reader.
 
@@ -99,9 +99,6 @@ url1 = f"http://localhost:8200/commands.php?GUID=bla{payload}"
 r = requests.get(url1)
 print(r.text)
 ```
-
-SCREENSHOT panel
-
 
 
 And this isn't the only place where this method will work, also the client data displayed in the panel is just the same, but as they fucked up the database config / insert into process, this does not work on my version per default and I was to lazy to fix it.
@@ -163,10 +160,10 @@ Then we run into a switch statement, as we control RT, we can just hop into RT_F
 * How can we increase the likelyhood?
 
 
-While the first two factors are debatable, we can of course increase the likelyhood of a hit when uploading more files. Therefore the strategy is simple: 1. Prepare our evil php code, upload ~200 files (you can increase that of course if you want to), and then try to find one of our shells. Easy. Here's the full exploit script, I recommend using it ethically *laught* 
+While the first two factors are debatable, we can of course increase the likelyhood of a hit when uploading more files. Therefore the strategy is simple: 1. Prepare our evil php code, upload ~200 files (you can increase that of course if you want to), and then try to find one of our shells. Easy. Here's the full exploit script, I recommend using it ethically \*laught\* 
 
 
-And some example run:
+And an example run:
 ```bash
 esjay@g Plague-Release % python3 sploit.py http://localhost:8200
 [*] Uploading files ...
