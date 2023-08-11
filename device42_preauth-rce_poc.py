@@ -15,10 +15,7 @@ https://nvd.nist.gov/vuln/detail/c mentions that this is a file disclosure as `r
 While this is correct, the application implemented a functionality to retrieve cloud files from AWS and Azure
 which subsequently will be stored on the actual appliance. The problem arises from the fact that the path 
 where the file is to be stored at is also controllable, leading to a pre-auth arbitrary file write and
-therefore to pre-auth RCE directly without much luck-dependend chaining.
-
-As I can't find my actual writeup anymore, this is all info I'm publishing now.
-
+therefore to pre-auth RCE directly without any luck-dependend chaining.
 
 Anyway, congratz to the researchers from bitdefender who won the publishing race on this ;)
 
