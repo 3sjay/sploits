@@ -11,8 +11,8 @@ requests.packages.urllib3.disable_warnings(category=InsecureRequestWarning)
 
 
 """
-https://nvd.nist.gov/vuln/detail/c mentions that this is a file disclosure as `root`. 
-While this is correct, the application implemented a functionality to retrieve cloud files from AWS and Azure
+https://www.cvedetails.com/cve/CVE-2022-1401/ mentions that this is a file disclosure as `root`. 
+While this is correct, the same handler implemented a functionality to retrieve cloud files from AWS and Azure
 which subsequently will be stored on the actual appliance. The problem arises from the fact that the path 
 where the file is to be stored at is also controllable, leading to a pre-auth arbitrary file write and
 therefore to pre-auth RCE directly without any luck-dependend chaining.
